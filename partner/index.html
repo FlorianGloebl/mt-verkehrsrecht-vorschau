@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Partnerportal | MT Verkehrsrecht</title>
+  <meta name="description" content="Geschützter Zugang für kooperierende Autohäuser und Werkstätten.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://maier-verkehrsrecht.de/partner/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:site_name" content="MT Verkehrsrecht">
+  <meta property="og:title" content="Partnerportal | MT Verkehrsrecht">
+  <meta property="og:description" content="Geschützter Zugang für kooperierende Autohäuser und Werkstätten.">
+  <meta property="og:url" content="https://maier-verkehrsrecht.de/partner/">
+  <meta property="og:image" content="https://maier-verkehrsrecht.de/assets/img/og-image.jpg">
+  <meta name="theme-color" content="#033140">
+  <link rel="preload" href="../assets/fonts/montserrat-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body data-root="../">
+  <!--#header-->
+    <a class="skip-link" href="#main">Zum Inhalt springen</a>
+    <div class="proto-banner" role="note"><strong>Vorschau</strong> · Vorabversion mit simulierter Kanzleisoftware-Anbindung – bitte keine echten Daten eingeben.</div>
+    <header class="site-header">
+      <div class="container">
+        <a class="logo" href="../" aria-label="MT Verkehrsrecht – Startseite"><img src="../assets/logo/mt-logo-hell.svg" alt="MT Verkehrsrecht" width="150" height="75"></a>
+        <nav class="main-nav" id="main-nav" aria-label="Hauptnavigation">
+          <ul><li><a href="../#unfallregulierung">Unfallregulierung</a></li><li><a href="../#ablauf">Ablauf</a></li><li><a href="../#kanzlei">Kanzlei</a></li><li><a href="../#partner">Autohäuser</a></li><li><a href="../#leistungen">Ordnungswidrigkeiten</a></li><li><a href="../#kontakt">Kontakt</a></li></ul>
+        </nav>
+        <div class="header-cta"><a class="btn btn--primary" href="../fall-melden/" aria-label="Fall melden"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 17H9M5 17H3a1 1 0 0 1-1-1v-3.5c0-.8.5-1.5 1.3-1.8L5 10l2.5-3.5A2 2 0 0 1 9.1 6H13"/><circle cx="7" cy="17" r="2"/><path d="m17 3 1 3 3 1-3 1-1 3-1-3-3-1 3-1z"/></svg><span>Fall melden</span></a></div>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Menü öffnen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      </div>
+    </header><!--/header-->
+  <main id="main">
+    <section class="page-hero dark">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Brotkrumen"><a href="../" data-href="">Start</a> / <span aria-current="page">Partnerportal</span></nav>
+        <h1>Partnerportal für Autohäuser &amp; Werkstätten</h1>
+        <p class="lead">Übermitteln Sie neue Kundenfälle mit dem verkürzten Fragebogen. Ihre Betriebsdaten sind bereits hinterlegt.</p>
+      </div>
+    </section>
+
+    <section class="section section--paper" style="padding-top:48px">
+      <div class="container form-shell">
+        <div class="form-card">
+          <div class="tabs" role="tablist" aria-label="Anmeldevariante">
+            <button role="tab" id="tab-a" aria-selected="true" aria-controls="panel-a">Zugangscode</button>
+            <button role="tab" id="tab-b" aria-selected="false" aria-controls="panel-b" tabindex="-1">Kennung + Einmalcode <span class="placeholder-tag">Variante B</span></button>
+          </div>
+
+          <div role="tabpanel" id="panel-a" aria-labelledby="tab-a">
+            <h2 class="step-title">Anmelden</h2>
+            <p class="step-intro">Geben Sie den individuellen Zugangscode Ihres Betriebs ein. Sie können ihn aus Ihrem Passwortmanager einfügen.</p>
+            <form id="login-form" novalidate>
+              <div data-errsum></div>
+              <div class="field" data-field="code">
+                <label for="f-code">Zugangscode</label>
+                <input type="password" id="f-code" name="code" autocomplete="current-password" spellcheck="false" autocapitalize="characters" aria-describedby="code-err" style="letter-spacing:.12em;font-weight:600">
+                <div id="code-err" aria-live="polite"></div>
+              </div>
+              <div class="form-nav"><span></span><button class="btn btn--primary" type="submit">Anmelden</button></div>
+            </form>
+            <div class="notice notice--warn" id="demo-note" style="margin-top:28px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+              <div><p><strong>Prototyp – Demo-Zugang:</strong> <code id="demo-code"></code><br>Gesperrter Demo-Betrieb zum Testen: <code>MTV-GESP-ERRT-0000</code></p></div></div>
+          </div>
+
+          <div role="tabpanel" id="panel-b" aria-labelledby="tab-b" hidden>
+            <h2 class="step-title">Anmelden mit Kennung</h2>
+            <p class="step-intro">Skizze der Alternative aus Konzept §7: Die kurze Partnerkennung (z.&nbsp;B. <code>A123</code>) allein öffnet das Formular nicht. Zusätzlich wird ein kurzlebiger Einmalcode an die hinterlegte, von der Kanzlei bestätigte E-Mail-Adresse geschickt.</p>
+            <div class="fields">
+              <div class="field" data-w="3"><label for="f-kennung">Partnerkennung</label><input type="text" id="f-kennung" placeholder="A123" disabled></div>
+              <div class="field" data-w="3"><label for="f-otp">Einmalcode aus E-Mail</label><input type="text" id="f-otp" inputmode="numeric" placeholder="6-stellig" disabled></div>
+            </div>
+            <p class="hint" style="margin-top:16px">Nur Ansicht – Entscheidung zur Codevariante steht aus (siehe docs/OFFENE-PUNKTE.md).</p>
+          </div>
+        </div>
+        <aside class="form-aside">
+          <div class="aside-box"><h2>Noch kein Zugang?</h2><p style="color:var(--grey)">Sie möchten mit uns zusammenarbeiten? Wir richten Ihrem Betrieb gerne einen Zugang ein.</p><a href="../kontakt/?anliegen=partnerschaft" data-href="kontakt/?anliegen=partnerschaft">Zusammenarbeit anfragen</a></div>
+          <div class="aside-box"><h2>Code vergessen?</h2><p style="color:var(--grey);margin:0">Rufen Sie uns an – aus Sicherheitsgründen erneuern wir Codes nur nach Rückfrage.</p></div>
+        </aside>
+      </div>
+    </section>
+  </main>
+  <!--#footer-->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-top">
+          <div>
+            <a class="logo logo--footer" href="../" aria-label="MT Verkehrsrecht – Startseite"><img src="../assets/logo/mt-logo-hell.svg" alt="MT Verkehrsrecht" width="185" height="92"></a>
+            <p class="footer-claim">Klare Hilfe. Schnell. Digital. Persönlich.</p>
+          </div>
+          <address>
+            <strong>MT | Verkehrsrecht</strong><br>Rechtsanwalt Thorsten Maier<br>Ottostraße 13 · 84030 Landshut<br>
+            <a href="tel:+4987120666180">Tel. 0871 20666180</a> · <a href="mailto:info@maier-verkehrsrecht.de">info@maier-verkehrsrecht.de</a>
+          </address>
+        </div>
+        <nav aria-label="Fußzeile">
+          <ul>
+            <li><a href="../fall-melden/">Fall melden</a></li>
+            <li><a href="../partner/">Partnerportal</a></li>
+            <li><a href="../kontakt/">Kontakt</a></li>
+            <li><a href="../impressum/">Impressum</a></li>
+            <li><a href="../datenschutz/">Datenschutz</a></li>
+            <li class="copy">© 2026 MT | Verkehrsrecht</li>
+          </ul>
+        </nav>
+      </div>
+    </footer><!--/footer-->
+  <script src="../assets/js/config.js"></script>
+  <script src="../assets/js/site.js"></script>
+  <script src="../assets/js/form-schema.js"></script>
+  <script src="../assets/js/form-engine.js"></script>
+  <script src="../assets/js/jurnodes-adapter.js"></script>
+  <script src="../assets/js/mock-backend.js"></script>
+  <script src="../assets/js/api-client.js"></script>
+  <script>
+    MT_BACKEND_READY.then(async (B) => {
+      if (await B.partnerSession()) location.replace(MT_HREF("partner/neuer-fall/"));
+      if (B.mode === "api") document.getElementById("demo-note").remove();
+      else document.getElementById("demo-code").textContent = B.PARTNERS[0].demoCode;
+    });
+    const tabs = [...document.querySelectorAll('[role="tab"]')];
+    tabs.forEach((t, i) => t.addEventListener("click", () => {
+      tabs.forEach((x, j) => { x.setAttribute("aria-selected", i === j); x.tabIndex = i === j ? 0 : -1;
+        document.getElementById(x.getAttribute("aria-controls")).hidden = i !== j; });
+    }));
+    const form = document.getElementById("login-form");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector("button"), inp = form.code, slot = document.getElementById("code-err");
+      const fail = (m) => { slot.innerHTML = '<p class="error-msg">' + MT_ICON("alert") + '<span>' + m + '</span></p>'; inp.setAttribute("aria-invalid", "true"); form.querySelector('[data-field="code"]').classList.add("has-error"); inp.focus(); };
+      if (!inp.value.trim()) return fail("Bitte geben Sie Ihren Zugangscode ein.");
+      btn.disabled = true; btn.textContent = "Wird geprüft …";
+      try { await (await MT_BACKEND_READY).partnerLogin(inp.value); location.href = MT_HREF("partner/neuer-fall/"); }
+      catch (err) { fail(err.userMessage || "Anmeldung nicht möglich."); inp.value = ""; }
+      finally { btn.disabled = false; btn.textContent = "Anmelden"; }
+    });
+  </script>
+</body>
+</html>
