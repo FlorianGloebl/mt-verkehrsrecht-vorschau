@@ -169,32 +169,7 @@ p { margin: 0 0 1em; }
 .hero__facts a { color: var(--white); }
 @media (max-width: 900px) { .hero__grid { grid-template-columns: 1fr; } }
 
-/* --- Raster (Unfallregulierung, Ihr Plus) ------------------------------- */
-.positions { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--grey-line); }
-.positions li { padding: 26px 28px 28px 0; border-bottom: 1px solid var(--grey-line); }
-.positions li:not(:nth-child(3n)) { border-right: 1px solid var(--grey-line); }
-.positions li:not(:nth-child(3n+1)) { padding-left: 28px; }
-.positions h3 { font-size: 1.2rem; margin-bottom: 6px; color: var(--brand); }
-.positions p { color: var(--muted); font-size: .95rem; margin: 0; }
-@media (max-width: 900px) {
-  .positions { grid-template-columns: 1fr 1fr; }
-  .positions li { padding: 22px 20px 22px 0 !important; border-right: 0 !important; }
-  .positions li:nth-child(odd) { border-right: 1px solid var(--grey-line) !important; }
-  .positions li:nth-child(even) { padding-left: 20px !important; }
-}
-@media (max-width: 560px) { .positions { grid-template-columns: 1fr; } .positions li:nth-child(n) { border-right: 0 !important; padding: 20px 0 !important; } }
 .note { color: var(--muted); font-size: .84rem; margin-top: 16px; }
-.service-strip { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--grey-line); background: var(--white); }
-.service-strip span { padding: 16px 20px; font-size: .76rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--brand); border-bottom: 1px solid var(--grey-line); }
-.service-strip span:not(:nth-child(3n+1)) { border-left: 1px solid var(--grey-line); }
-.service-strip span:nth-last-child(-n+3) { border-bottom: 0; }
-@media (max-width: 900px) {
-  .service-strip { grid-template-columns: 1fr 1fr; }
-  .service-strip span:nth-child(n) { border-left: 0; border-bottom: 1px solid var(--grey-line); }
-  .service-strip span:nth-child(even) { border-left: 1px solid var(--grey-line); }
-  .service-strip span:last-child { border-bottom: 0; }
-}
-@media (max-width: 480px) { .service-strip { grid-template-columns: 1fr; } .service-strip span:nth-child(n) { border-left: 0; } }
 
 /* --- Ablauf ---------------------------------------------------------------- */
 .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); counter-reset: step; border-top: 1px solid var(--line-dark); }
@@ -217,20 +192,18 @@ p { margin: 0 0 1em; }
 .quote { margin: 64px 0 0; padding: 0 0 0 32px; border-left: 2px solid var(--brand); font-family: var(--font-serif); font-size: clamp(1.3rem, 2.2vw, 1.7rem); font-weight: 400; line-height: 1.45; color: var(--brand); max-width: none; }
 .quote footer { margin-top: 16px; font-family: var(--font); font-size: .78rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 
-/* --- Partnerband ----------------------------------------------------------- */
-.partner-band { display: grid; grid-template-columns: 1fr 1fr; padding: 0; }
-.partner-band > .container { grid-column: 1 / -1; grid-row: 1; display: grid; grid-template-columns: 1fr 1fr; }
-.partner-band .content { grid-column: 1; padding: var(--section) clamp(24px, 4vw, 64px) var(--section) 0; }
-.partner-band h2 { font-size: clamp(1.75rem, 2.45vw, 2.6rem); }
-.partner-band__img { grid-column: 2; grid-row: 1; position: relative; min-height: 100%; }
-.partner-band__img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); }
-.partner-band ul { list-style: none; padding: 0; margin: 0 0 40px; border-top: 1px solid var(--line-dark); }
+/* --- Partnerband --------------------------------------------------------- */
+.partner-band { position: relative; overflow: hidden; }
+.partner-band .content { width: calc(50% - 56px); padding: var(--section) 0; }
+/* Schriftgröße an die Spaltenbreite gekoppelt: längste Zeile („Ein kurzer Weg vom Fahrzeugschaden“) passt immer */
+.partner-band h2 { font-size: clamp(1.3rem, calc((min(100vw, var(--container)) / 2 - 96px) / 19.5), 2.3rem); }
+.partner-band__img { position: absolute; top: 0; bottom: 0; left: 50%; right: 0; }
+.partner-band__img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); }
+.partner-band ul { list-style: none; padding: 0; margin: 0 0 32px; border-top: 1px solid var(--line-dark); }
 .partner-band li { padding: 12px 0; border-bottom: 1px solid var(--line-dark); color: rgba(255,255,255,.88); font-size: .97rem; }
-@media (max-width: 900px) {
-  .partner-band { grid-template-columns: 1fr; }
-  .partner-band > .container { grid-template-columns: 1fr; }
-  .partner-band .content { padding: 64px 0; }
-  .partner-band__img { grid-column: 1; grid-row: 2; height: 260px; }
+@media (max-width: 1000px) {
+  .partner-band .content { width: auto; padding: 64px 0; }
+  .partner-band__img { position: relative; left: 0; height: 280px; }
 }
 
 /* --- Weitere Leistungen (Bildkarten) ------------------------------------- */
@@ -483,3 +456,42 @@ fieldset.group > legend.label { border: 0; padding: 0; margin-bottom: 7px; font-
 .innung strong { color: var(--white); font-weight: 600; }
 .innung__logo { background: var(--white); padding: 6px; flex: none; }
 .innung__logo img { width: 56px; height: 56px; }
+
+/* --- Ihr Plus: Karten ------------------------------------------------------ */
+.pillar-cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.pillar-cards li { background: var(--white); border-top: 3px solid var(--brand); padding: 36px 32px 34px; }
+.pillar-cards__no { display: block; font-size: .72rem; font-weight: 600; letter-spacing: .18em; color: var(--brand-2); margin-bottom: 18px; }
+.pillar-cards h3 { font-size: clamp(1.7rem, 2.3vw, 2.2rem); font-weight: 400; color: var(--brand); margin-bottom: 12px; }
+.pillar-cards p { color: var(--muted); margin: 0; }
+@media (max-width: 900px) { .pillar-cards { grid-template-columns: 1fr; gap: 16px; } }
+
+/* --- Unfallregulierung: Ablauf -------------------------------------------- */
+.journey { list-style: none; margin: 0 0 clamp(48px, 6vw, 72px); padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 28px; counter-reset: jn; position: relative; }
+.journey li { position: relative; counter-increment: jn; }
+/* Verbindungslinie je Schritt bis zum nächsten Quadrat (endet exakt an der letzten Nummer) */
+.journey li:not(:last-child)::after { content: ""; position: absolute; top: 23px; left: 48px; right: -28px; height: 1px; background: var(--brand); opacity: .35; }
+.journey li::before { content: counter(jn, decimal-leading-zero); position: relative; display: grid; place-items: center; width: 48px; height: 48px; margin-bottom: 22px; background: var(--brand); color: var(--white); font-family: var(--font-serif); font-size: 1.15rem; }
+.journey h3 { font-size: 1.15rem; color: var(--brand); margin-bottom: 8px; }
+.journey p { color: var(--muted); font-size: .93rem; margin: 0; }
+@media (max-width: 1000px) {
+  .journey { grid-template-columns: 1fr; gap: 0; }
+  .journey li:not(:last-child)::after { top: 48px; bottom: 0; left: 23px; right: auto; width: 1px; height: auto; }
+  .journey li { display: grid; grid-template-columns: 48px 1fr; column-gap: 20px; padding-bottom: 26px; }
+  .journey li::before { grid-row: span 2; margin: 0; }
+}
+
+/* --- Unfallregulierung: Schadenspositionen -------------------------------- */
+.claims-card { display: grid; grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr); background: var(--white); border: 1px solid var(--grey-line); }
+.claims-card__body { padding: clamp(28px, 3.5vw, 48px); }
+.claims-card__body h3 { font-size: clamp(1.4rem, 2vw, 1.75rem); color: var(--brand); margin-bottom: 24px; }
+.checklist { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 28px; }
+.checklist li { position: relative; padding: 11px 0 11px 28px; border-bottom: 1px solid var(--grey-line); font-size: .96rem; }
+.checklist li::before { content: ""; position: absolute; left: 2px; top: 17px; width: 11px; height: 6px; border-left: 2px solid var(--brand); border-bottom: 2px solid var(--brand); transform: rotate(-45deg); }
+.claims-card__cta { padding: clamp(28px, 3.5vw, 48px); display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 16px; }
+.claims-card__cta .eyebrow { margin: 0; }
+.claims-card__cta-title { font-family: var(--font-serif); font-size: clamp(1.3rem, 1.7vw, 1.6rem); line-height: 1.35; margin: 0 0 8px; }
+.claims-card__tel { color: var(--white); text-decoration: none; font-weight: 600; letter-spacing: .02em; }
+.claims-card__tel:hover { text-decoration: underline; }
+@media (max-width: 1100px) { .checklist { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 900px) { .claims-card { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .checklist { grid-template-columns: 1fr; } }
