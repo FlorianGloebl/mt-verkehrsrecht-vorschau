@@ -4,7 +4,7 @@
 window.MT_CONFIG = {
   brand: {
     name: "MT | Verkehrsrecht",
-    claim: "Klare Hilfe. Schnell. Digital. Persönlich.",
+    claim: "Kompetente Hilfe. Klar. Schnell. Persönlich.",
   },
   kanzlei: {
     inhaber: "Rechtsanwalt Thorsten Maier",
