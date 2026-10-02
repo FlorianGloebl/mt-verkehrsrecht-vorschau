@@ -55,25 +55,27 @@
   const guard = (B) => (er) => { if (er.status === 401) renderLogin(B, "Sitzung abgelaufen – bitte erneut anmelden."); else throw er; };
 
   /* ------------------------------------------------------------ Partnerbetriebe */
-  async function renderPartners(B, flash = "") {
+  async function renderPartners(B, flash = "", editId = null) {
     let data;
     try { data = await B.admin.partners(); } catch (er) { return guard(B)(er); }
     const body = shell(B, "partner");
     const fmt = (s) => (s ? new Date(s * 1000).toLocaleString("de-DE", { dateStyle: "short", timeStyle: "short" }) : "–");
+    const ed = editId ? data.items.find((x) => x.id === editId) : null; // Bearbeiten-Modus
+    const v = (k) => (ed ? `value="${esc(ed[k] || "")}"` : "");
     body.innerHTML = `${flash}
       <div class="form-card" style="margin-bottom:32px">
-        <h2 class="step-title" style="font-size:1.5rem">Neuen Partnerbetrieb anlegen</h2>
-        <p class="step-intro" style="margin-bottom:20px">Das System vergibt eine Partnernummer und einen Zugangscode. Der Code wird nur einmal angezeigt – bitte sicher an den Betrieb übermitteln.</p>
+        <h2 class="step-title" style="font-size:1.5rem">${ed ? "Partnerbetrieb bearbeiten" : "Neuen Partnerbetrieb anlegen"}</h2>
+        <p class="step-intro" style="margin-bottom:20px">${ed ? "Stammdaten ändern. Der Zugangscode bleibt dabei unverändert." : "Das System vergibt eine Partnernummer und einen Zugangscode. Der Code wird nur einmal angezeigt – bitte sicher an den Betrieb übermitteln."}</p>
         <form id="pf" novalidate>
           <div data-err></div>
           <div class="fields">
-            <div class="field" data-w="4"><label for="p-name">Name des Betriebs</label><input type="text" id="p-name" name="name" maxlength="150" required></div>
-            <div class="field" data-w="2"><label for="p-kennung">Partnernummer <span class="opt">(optional)</span></label><input type="text" id="p-kennung" name="kennung" maxlength="20" placeholder="${esc(data.next)}"></div>
-            <div class="field" data-w="2"><label for="p-ort">Ort <span class="opt">(optional)</span></label><input type="text" id="p-ort" name="ort" maxlength="100"></div>
-            <div class="field" data-w="2"><label for="p-ap">Ansprechpartner <span class="opt">(optional)</span></label><input type="text" id="p-ap" name="ansprechpartner" maxlength="150"></div>
-            <div class="field" data-w="2"><label for="p-mail">E-Mail <span class="opt">(optional)</span></label><input type="email" id="p-mail" name="email" maxlength="150"></div>
+            <div class="field" data-w="4"><label for="p-name">Name des Betriebs</label><input type="text" id="p-name" name="name" maxlength="150" required ${v("name")}></div>
+            <div class="field" data-w="2"><label for="p-kennung">Partnernummer <span class="opt">(optional)</span></label><input type="text" id="p-kennung" name="kennung" maxlength="20" placeholder="${esc(data.next)}" ${v("kennung")}></div>
+            <div class="field" data-w="2"><label for="p-ort">Ort <span class="opt">(optional)</span></label><input type="text" id="p-ort" name="ort" maxlength="100" ${v("ort")}></div>
+            <div class="field" data-w="2"><label for="p-ap">Ansprechpartner <span class="opt">(optional)</span></label><input type="text" id="p-ap" name="ansprechpartner" maxlength="150" ${v("ansprechpartner")}></div>
+            <div class="field" data-w="2"><label for="p-mail">E-Mail <span class="opt">(optional)</span></label><input type="email" id="p-mail" name="email" maxlength="150" ${v("email")}></div>
           </div>
-          <div class="form-nav"><span class="hint" style="margin:0">Ohne Eingabe wird die Nummer ${esc(data.next)} vergeben.</span><button class="btn btn--primary" type="submit">Anlegen und Code erzeugen</button></div>
+          <div class="form-nav">${ed ? `<button class="btn btn--back" type="button" data-cancel>Abbrechen</button><button class="btn btn--primary" type="submit">Änderungen speichern</button>` : `<span class="hint" style="margin:0">Ohne Eingabe wird die Nummer ${esc(data.next)} vergeben.</span><button class="btn btn--primary" type="submit">Anlegen und Code erzeugen</button>`}</div>
         </form>
       </div>
       <div class="table-wrap"><table class="data"><thead><tr><th>Nr.</th><th>Betrieb</th><th>Kontakt</th><th>Fälle</th><th>Letzte Anmeldung</th><th>Status</th><th>Aktionen</th></tr></thead><tbody>
@@ -85,6 +87,7 @@
           <td>${fmt(p.last_login_at)}</td>
           <td><span class="status status--${p.active ? "done" : "failed"}">${p.active ? "Aktiv" : "Gesperrt"}</span></td>
           <td><div style="display:grid;gap:6px">
+            <button ${btnSm} type="button" data-edit="${p.id}">Bearbeiten</button>
             <button ${btnSm} type="button" data-rotate="${p.id}" data-name="${esc(p.name)}">Neuen Code erzeugen</button>
             <button ${btnSm} type="button" data-active="${p.id}" data-to="${p.active ? 0 : 1}">${p.active ? "Sperren" : "Entsperren"}</button>
           </div></td></tr>`).join("") : '<tr><td colspan="7">Noch keine Partnerbetriebe angelegt.</td></tr>'}
@@ -97,6 +100,10 @@
       const btn = form.querySelector("button[type=submit]");
       btn.disabled = true;
       try {
+        if (ed) {
+          await B.admin.partnerUpdate({ id: ed.id, ...fd });
+          return renderPartners(B, `<div class="notice notice--ok" role="status" style="margin-bottom:28px">${MT_ICON("check")}<p>Stammdaten von <strong>${esc(fd.name)}</strong> gespeichert.</p></div>`);
+        }
         const r = await B.admin.partnerCreate(fd);
         renderPartners(B, codeBox(fd.name, r.kennung, r.code, "angelegt"));
       } catch (er) {
@@ -105,6 +112,8 @@
         body.querySelector("[data-err]").innerHTML = `<div class="notice notice--error" role="alert" style="margin-bottom:16px">${MT_ICON("alert")}<p>${esc(er.userMessage)}</p></div>`;
       }
     });
+    body.querySelector("[data-cancel]")?.addEventListener("click", () => renderPartners(B));
+    body.querySelectorAll("[data-edit]").forEach((b) => (b.onclick = () => { renderPartners(B, "", +b.dataset.edit).then(() => mount.querySelector("#p-name")?.focus()); }));
     // Zweistufige Bestätigung ohne Browser-Dialoge
     const twoStep = (btn, label, run) => {
       btn.onclick = async () => {

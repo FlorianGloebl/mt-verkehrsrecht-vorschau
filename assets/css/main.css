@@ -48,7 +48,7 @@
   --header-h: 84px;
   --container: 1440px;
   --gutter: clamp(16px, 3.2vw, 40px);
-  --section: clamp(72px, 9vw, 120px);
+  --section: clamp(48px, 5vw, 72px);
 }
 
 /* --- Basis ---------------------------------------------------------------- */
@@ -135,7 +135,7 @@ p { margin: 0 0 1em; }
 .section { padding: var(--section) 0; }
 .section--paper { background: var(--grey-bg); }
 .section--tint { background: var(--brand-tint); }
-.section-head { margin-bottom: 56px; }
+.section-head { margin-bottom: 36px; }
 .section-head .lead { max-width: 70ch; }
 /* Vorgegebene Zeilenumbrüche (Desktop): .line = eigene Zeile, .one-line = keine Umbrüche */
 @media (min-width: 1000px) {
@@ -189,7 +189,7 @@ p { margin: 0 0 1em; }
 .person__role { color: var(--brand-2); font-weight: 600; font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 14px; }
 .person p { color: var(--muted); font-size: .97rem; }
 @media (max-width: 760px) { .team { grid-template-columns: 1fr; } }
-.quote { margin: 64px 0 0; padding: 0 0 0 32px; border-left: 2px solid var(--brand); font-family: var(--font-serif); font-size: clamp(1.3rem, 2.2vw, 1.7rem); font-weight: 400; line-height: 1.45; color: var(--brand); max-width: none; }
+.quote { margin: 44px 0 0; padding: 0 0 0 32px; border-left: 2px solid var(--brand); font-family: var(--font-serif); font-size: clamp(1.3rem, 2.2vw, 1.7rem); font-weight: 400; line-height: 1.45; color: var(--brand); max-width: none; }
 .quote footer { margin-top: 16px; font-family: var(--font); font-size: .78rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 
 /* --- Partnerband --------------------------------------------------------- */
@@ -466,7 +466,7 @@ fieldset.group > legend.label { border: 0; padding: 0; margin-bottom: 7px; font-
 @media (max-width: 900px) { .pillar-cards { grid-template-columns: 1fr; gap: 16px; } }
 
 /* --- Unfallregulierung: Ablauf -------------------------------------------- */
-.journey { list-style: none; margin: 0 0 clamp(48px, 6vw, 72px); padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 28px; counter-reset: jn; position: relative; }
+.journey { list-style: none; margin: 0 0 clamp(32px, 4vw, 48px); padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 28px; counter-reset: jn; position: relative; }
 .journey li { position: relative; counter-increment: jn; }
 /* Verbindungslinie je Schritt bis zum nächsten Quadrat (endet exakt an der letzten Nummer) */
 .journey li:not(:last-child)::after { content: ""; position: absolute; top: 23px; left: 48px; right: -28px; height: 1px; background: var(--brand); opacity: .35; }
